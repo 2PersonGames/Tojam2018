@@ -4,7 +4,6 @@ public class PlayerController : BaseController
 {
     protected override void Update()
     {
-        throw new System.NotImplementedException();
     }
 
     protected override void FixedUpdate()
@@ -14,32 +13,25 @@ public class PlayerController : BaseController
 
     protected override Vector3 GetMovementDirection()
     {
-        if (RigidBody.velocity.y <= 0.01f && RigidBody.velocity.y >= -0.01f)
-        {
-            Vector3 diection = Vector3.zero;
+        Vector3 direction = Vector3.zero;
 
-            if (Input.GetAxis("Horizontal") > 0.1f)
-            {
-                diection += Vector3.right;
-            }
-            else if (Input.GetAxis("Horizontal") < -0.1f)
-            {
-                diection += Vector3.left;
-            }
-            else if (Input.GetAxis("Vertical") < -0.1f)
-            {
-                diection += Vector3.forward;
-            }
-            else if (Input.GetAxis("Vertical") > 0.1f)
-            {
-                diection += Vector3.back;
-            }
-
-            return Vector3.Normalize(diection);
-        }
-        else
+        if (Input.GetAxis("Horizontal") > 0.1f)
         {
-            return Vector3.zero;
+            direction += Vector3.right;
         }
+        else if (Input.GetAxis("Horizontal") < -0.1f)
+        {
+            direction += Vector3.left;
+        }
+        if (Input.GetAxis("Vertical") < -0.1f)
+        {
+            direction += Vector3.down;
+        }
+        else if (Input.GetAxis("Vertical") > 0.1f)
+        {
+            direction += Vector3.up;
+        }
+
+        return Vector3.Normalize(direction);
     }
 }
