@@ -24,6 +24,6 @@ public class Player : MonoBehaviour
 
     public void ConsumeBlob(BlobController blobController)
     {
-        Debug.Log(string.Format("TODO: ConsumeBlob");
+        Debug.Log(string.Format("TODO: ConsumeBlob"));
     }
 }
