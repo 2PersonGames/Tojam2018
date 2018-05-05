@@ -10,10 +10,7 @@ public class Player : MonoBehaviour
     {
         playerNumber_ = ++playerCounter;
         gameObject.AddComponent<IanMovementController>();
-        var clusteringSystem = gameObject.AddComponent<ClusteringSystem>();
-
-        var throwController = gameObject.AddComponent<ThrowController>();
-        throwController.ClusteringSystem = clusteringSystem;
+        gameObject.AddComponent<ClusteringSystem>();
     }
 
     // Use this for initialization
