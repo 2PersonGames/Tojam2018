@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -26,7 +25,14 @@ public class ClusteringSystem : MonoBehaviour
 
     public GameObject GetBlob()
     {
-        if (blobs.Any())
+        if (true)
+        {
+            return Instantiate(
+                Resources.Load<GameObject>("Gems_0"),
+                gameObject.transform.position,
+                Quaternion.identity);
+        }
+        else if (blobs.Any())
         {
             var blob = blobs[0];
             blobs.RemoveAt(0);
@@ -58,7 +64,6 @@ public class ClusteringSystem : MonoBehaviour
             blob.name = blobPart.name + "[" + i + "]";
             blob.AddComponent<BlobSpinner>();
             blobs.Add(blob);
-
         }
     }
 

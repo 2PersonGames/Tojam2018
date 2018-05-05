@@ -2,7 +2,7 @@
 
 public class ThrowController : MonoBehaviour
 {
-    private const float FORCE = 50.0f;
+    private const float FORCE = 500.0f;
 
     public ClusteringSystem ClusteringSystem { private get; set; }
 
@@ -14,12 +14,16 @@ public class ThrowController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
-        if (Input.GetButtonDown("Fire1"))
+    {
+        var direction = GetDirection();
+        if (direction != Vector2.zero && Input.GetButtonDown("Fire1"))
         {
             var blob = ClusteringSystem.GetBlob();
-            var rigidBody2D = blob.GetComponent<Rigidbody2D>();
-            rigidBody2D.AddForce(GetDirection() * Time.deltaTime * FORCE);
+            var rigidBody2D = blob.AddComponent<Rigidbody2D>();
+            rigidBody2D.gravityScale = 0.0f;
+            rigidBody2D.AddForce(
+                (direction * Time.deltaTime * FORCE), 
+                ForceMode2D.Impulse);
         }
     }
 
