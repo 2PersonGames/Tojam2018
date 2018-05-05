@@ -20,12 +20,13 @@ public class IanMovementController : MonoBehaviour
     // Update is called once per frame
     void Update ()
 	{
-	    float horizontalInput = Input.GetAxis("Horizontal");
+	    float x = Input.GetAxis("Horizontal");
+	    float y = Input.GetAxis("Vertical");
+        Vector2 inputs = new Vector2(x,y);
 
-
-	    if (horizontalInput != 0)
+        if (inputs.x != 0 || inputs.y != 0)
 	    {
-            rigidbody2D.AddForce(Vector2.right * horizontalInput * Time.deltaTime * force);
+            rigidbody2D.AddForce( new Vector2(inputs.x, inputs.y) * Time.deltaTime * force);
 	    }
 
 	}
