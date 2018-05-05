@@ -1,30 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class ClusteringSystem : MonoBehaviour {
-
+public class ClusteringSystem : MonoBehaviour
+{
     public static int MAX_NUMBER_BLOB_PARTS = 10;
+
     private int numberBlobParts = MAX_NUMBER_BLOB_PARTS;
     private List<GameObject> blobs = new List<GameObject>();
 
     // Use this for initialization
-    void Start ()
-	{
+    void Start()
+    {
         //GameObject blobPart = Instantiate(Resources.Load("Gems_0"), typeof(GameObject)) as GameObject;
-	    GameObject blobPart = Instantiate(Resources.Load<GameObject>("Gems_0"));
+        GameObject blobPart = Instantiate(Resources.Load<GameObject>("Gems_0"));
         AttachCirclingArrayBlobs(blobPart);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public GameObject GetBlob()
+    {
+        if (blobs.Any())
+        {
+            var blob = blobs[0];
+            blobs.RemoveAt(0);
+            return blob;
+        }
+        else
+        {
+            return null;
+        }
+    }
 
     private void AttachCirclingArrayBlobs(GameObject blobPart)
     {
-
-
         //get current game object's size
         BoxCollider2D boxCollider2D = gameObject.GetComponent<BoxCollider2D>();
         Vector2 center = boxCollider2D.bounds.center;
@@ -61,5 +76,4 @@ public class ClusteringSystem : MonoBehaviour {
         pos.y = center.y + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
         return pos;
     }
-
 }
