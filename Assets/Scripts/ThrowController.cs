@@ -25,6 +25,8 @@ public class ThrowController : MonoBehaviour
             blob.GetComponent<Rigidbody2D>().AddForce(
                 (direction * Time.deltaTime * FORCE), 
                 ForceMode2D.Impulse);
+
+            _player.BlobCreated(blob);
         }
     }
 

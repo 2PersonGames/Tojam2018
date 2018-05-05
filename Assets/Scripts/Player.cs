@@ -3,10 +3,13 @@
 public class Player : MonoBehaviour
 {
     private static int playerCounter = 0;
+
     private int playerNumber_;
+    private int _happiness;
 
     public void Init()
     {
+        _happiness = 50;
         playerNumber_ = ++playerCounter;
     }
 
@@ -22,8 +25,15 @@ public class Player : MonoBehaviour
 
     }
 
+    public void BlobCreated(GameObject blog)
+    {
+        _happiness--;
+        Debug.Log(string.Format("Player happiness decreased to {0}", _happiness));
+    }
+
     public void ConsumeBlob(BlobController blobController)
     {
-        Debug.Log(string.Format("TODO: ConsumeBlob"));
+        _happiness++;
+        Debug.Log(string.Format("Player happiness increased to {0}", _happiness));
     }
 }
