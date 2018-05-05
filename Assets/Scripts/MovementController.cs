@@ -1,17 +1,14 @@
 ﻿using UnityEngine;
 
-public class IanMovementController : MonoBehaviour
+public class MovementController : MonoBehaviour
 {
-    private float force = 50f;
-    private new Rigidbody2D rigidbody2D;
+    private const float FORCE = 50.0f;
+    private Rigidbody2D _rigidbody2D;
 
     // Use this for initialization
     void Start()
     {
-        rigidbody2D = gameObject.AddComponent<Rigidbody2D>();
-        rigidbody2D.gravityScale = 0;
-
-        gameObject.AddComponent<BoxCollider2D>();
+        _rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -23,7 +20,7 @@ public class IanMovementController : MonoBehaviour
 
         if (inputs != Vector2.zero)
         {
-            rigidbody2D.AddForce(new Vector2(inputs.x, inputs.y) * Time.deltaTime * force);
+            _rigidbody2D.AddForce(new Vector2(inputs.x, inputs.y) * Time.deltaTime * FORCE);
         }
     }
 }
