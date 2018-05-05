@@ -2,7 +2,6 @@
 
 public class Player : MonoBehaviour
 {
-
     private static int playerCounter = 0;
     private int playerNumber_;
 
@@ -23,11 +22,8 @@ public class Player : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider col)
+    public void ConsumeBlob(BlobController blobController)
     {
-        if (col.gameObject.tag == "Blob")
-        {
-            Destroy(col.gameObject);
-        }
+        Debug.Log(string.Format("TODO: ConsumeBlob");
     }
 }

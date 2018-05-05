@@ -4,11 +4,14 @@ public class ThrowController : MonoBehaviour
 {
     private const float FORCE = 500.0f;
 
-    public GameObject ThrownObjectPrefab;  
+    public GameObject ThrownObjectPrefab;
+
+    private Player _player;
 
     // Use this for initialization
     void Start()
     {
+        _player = gameObject.GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -18,7 +21,7 @@ public class ThrowController : MonoBehaviour
         if (direction != Vector2.zero && Input.GetButtonDown("Fire1"))
         {
             var blob = Instantiate(ThrownObjectPrefab, gameObject.transform.position, Quaternion.identity);
-            blob.tag = "Blob";
+            blob.GetComponent<BlobController>().OriginPlayer = _player;
             blob.GetComponent<Rigidbody2D>().AddForce(
                 (direction * Time.deltaTime * FORCE), 
                 ForceMode2D.Impulse);
