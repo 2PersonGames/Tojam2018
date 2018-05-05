@@ -10,10 +10,11 @@ public class Player : MonoBehaviour {
     public void Init()
     {
         playerNumber_ = ++playerCounter;
+        gameObject.AddComponent<IanMovementController>();
     }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
