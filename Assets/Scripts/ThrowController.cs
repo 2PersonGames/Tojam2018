@@ -18,6 +18,7 @@ public class ThrowController : MonoBehaviour
         if (direction != Vector2.zero && Input.GetButtonDown("Fire1"))
         {
             var blob = Instantiate(ThrownObjectPrefab, gameObject.transform.position, Quaternion.identity);
+            blob.tag = "Blob";
             blob.GetComponent<Rigidbody2D>().AddForce(
                 (direction * Time.deltaTime * FORCE), 
                 ForceMode2D.Impulse);

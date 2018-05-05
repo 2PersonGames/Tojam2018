@@ -9,8 +9,6 @@ public class Player : MonoBehaviour
     public void Init()
     {
         playerNumber_ = ++playerCounter;
-        gameObject.AddComponent<IanMovementController>();
-        gameObject.AddComponent<ClusteringSystem>();
     }
 
     // Use this for initialization
@@ -23,5 +21,13 @@ public class Player : MonoBehaviour
     void Update()
     {
 
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == "Blob")
+        {
+            Destroy(col.gameObject);
+        }
     }
 }
