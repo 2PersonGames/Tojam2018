@@ -23,27 +23,6 @@ public class ClusteringSystem : MonoBehaviour
 
     }
 
-    public GameObject GetBlob()
-    {
-        if (true)
-        {
-            return Instantiate(
-                Resources.Load<GameObject>("Gems_0"),
-                gameObject.transform.position,
-                Quaternion.identity);
-        }
-        else if (blobs.Any())
-        {
-            var blob = blobs[0];
-            blobs.RemoveAt(0);
-            return blob;
-        }
-        else
-        {
-            return null;
-        }
-    }
-
     private void AttachCirclingArrayBlobs(GameObject blobPart)
     {
         //get current game object's size

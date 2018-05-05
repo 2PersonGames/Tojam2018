@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114317160503378924}
   - component: {fileID: 114273306077680082}
   - component: {fileID: 114084922758562918}
+  - component: {fileID: 114623556349346722}
   m_Layer: 0
   m_Name: Gems_0
   m_TagString: Untagged
@@ -74,7 +75,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -123,6 +124,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2280256162b7712489b50167675e5551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114623556349346722
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1749531647735394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68ae25f20d291db4b86228edcc6a030c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212835451454342198
