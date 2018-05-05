@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
     {
         playerNumber_ = ++playerCounter;
         gameObject.AddComponent<IanMovementController>();
+        gameObject.AddComponent<ClusteringSystem>();
     }
 
     // Use this for initialization
