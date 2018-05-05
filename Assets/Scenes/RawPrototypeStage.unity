@@ -1234,6 +1234,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2280256162b7712489b50167675e5551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &969103947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 969103945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c99bf97e15f2c0f47bf0e1d74d645d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ThrownObjectPrefab: {fileID: 1749531647735394, guid: 17770647dd946e944a6d5861f6e4e6ab,
+    type: 2}
 --- !u!1001 &1013400665
 Prefab:
   m_ObjectHideFlags: 0
