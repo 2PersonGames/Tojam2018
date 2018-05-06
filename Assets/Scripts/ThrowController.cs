@@ -69,7 +69,12 @@ public class ThrowController : MonoBehaviour
                 }
             }
 
+            Debug.Log("before norm -- X: " + direction.x + " | y: " + direction.y);
+
             direction.Normalize();
+
+            Debug.Log("after -- X: " + direction.x + " | y: " + direction.y);
+
 
             var position = gameObject.transform.position;
             var distanceAwayFromCollision = direction * 0.5f 
