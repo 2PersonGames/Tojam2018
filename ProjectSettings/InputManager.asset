@@ -724,7 +724,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 0
-    joyNum: 1
+    joyNum: 3
   - serializedVersion: 3
     m_Name: 3Vertical
     descriptiveName: joy -- for controller like xbox, etc
@@ -740,7 +740,7 @@ InputManager:
     invert: 1
     type: 2
     axis: 1
-    joyNum: 1
+    joyNum: 3
   - serializedVersion: 3
     m_Name: 3FireDirectionH
     descriptiveName: joy -- for controller like xbox, etc
@@ -836,7 +836,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 0
-    joyNum: 1
+    joyNum: 4
   - serializedVersion: 3
     m_Name: 4Vertical
     descriptiveName: joy -- for controller like xbox, etc
@@ -852,7 +852,7 @@ InputManager:
     invert: 1
     type: 2
     axis: 1
-    joyNum: 1
+    joyNum: 4
   - serializedVersion: 3
     m_Name: 4FireDirectionH
     descriptiveName: joy -- for controller like xbox, etc

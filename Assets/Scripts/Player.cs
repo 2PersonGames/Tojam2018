@@ -69,11 +69,29 @@ public class Player : MonoBehaviour
         {
             switch (GetState())
             {
+                
+
                 case State.NoHappinessLeft:
+
                     Debug.Log(string.Format("Player has sacrified themselves for another player!"));
                     otherPlayer.ConsumeHappiness(this);
+
+                    Vector2 lastPosition = transform.position;
                     Destroy(gameObject);
-                    Debug.Log("TODO: Handle win state");
+                    //Debug.Log("TODO: Handle win state");
+
+
+                    GameObject stormRainCloud = new GameObject();
+                    stormRainCloud.transform.position = lastPosition;
+                    SpriteRenderer spriteRenderer = stormRainCloud.AddComponent<SpriteRenderer>();
+                    spriteRenderer.sprite = Resources.Load<GameObject>("storm1").GetComponent<SpriteRenderer>().sprite;
+
+                    //replace cloud walls with storm
+                    Transform roomClouds = GameObject.Find("RoomWalls").transform;
+                    foreach (Transform childCloud in roomClouds)
+                    {
+                        childCloud.GetComponent<SpriteRenderer>().sprite = Resources.Load<GameObject>("storm2").GetComponent<SpriteRenderer>().sprite;
+                    }
                     break;
 
                 default:
