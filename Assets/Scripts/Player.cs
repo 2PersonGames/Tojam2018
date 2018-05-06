@@ -83,14 +83,13 @@ public class Player : MonoBehaviour
         {
             _audioSource.PlayOneShot(BlobCreatedAudioClip, 1.0f);
         }
-        //Debug.Log(string.Format("Player happiness decreased to {0}", _happiness));
+        Debug.Log(string.Format("Player happiness decreased to {0}", _happiness));
     }
 
     public void ConsumeHappiness(Player player)
     {
         _happiness += player._happiness;
-
-        //Debug.Log(string.Format("Player happiness increased to {0}", _happiness));
+        Debug.Log(string.Format("Player happiness increased to {0}", _happiness));
     }
 
     public void ConsumeHappiness(HappinessController happinessController)
@@ -103,14 +102,17 @@ public class Player : MonoBehaviour
 
         foreach (var player in Resources.FindObjectsOfTypeAll<Player>())
         {
-            if (player._happinessThrown.Remove(happinessController) && player == this)
+            if (player._happinessThrown.Remove(happinessController))
             {
-                //Debug.Log(string.Format("Player absorbed their own happiness!"));
+                if (player == this)
+                {
+                    Debug.Log(string.Format("Player absorbed their own happiness!"));
+                }
                 break;
             }
         }
 
-        //Debug.Log(string.Format("Player happiness increased to {0}", _happiness));
+        Debug.Log(string.Format("Player happiness increased to {0}", _happiness));
     }
 
     public bool IsHappinessOwnedByme(HappinessController happinessController)
