@@ -49,9 +49,9 @@ public class ThrowController : MonoBehaviour
         {
             var direction = GetDirection();
             var position = gameObject.transform.position;
-            var distanceAwayFromCollision = direction * 0.5f
-                * ((Vector2.SqrMagnitude(_player.GetComponent<BoxCollider2D>().size))
-                    + (Vector2.SqrMagnitude(ThrownObjectPrefab.GetComponent<BoxCollider2D>().size)));
+            var distanceAwayFromCollision = direction 
+                * ((_player.GetComponent<CircleCollider2D>().radius)
+                    + (ThrownObjectPrefab.GetComponent<CircleCollider2D>().radius));
             var playerVelocity = _player.GetComponent<Rigidbody2D>().velocity;
             distanceAwayFromCollision += playerVelocity * Time.fixedDeltaTime * 2.0f;
             position += new Vector3(distanceAwayFromCollision.x, distanceAwayFromCollision.y, 0.0f);

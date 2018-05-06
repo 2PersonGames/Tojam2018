@@ -4,6 +4,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public const int MAX_PLAYERS = 4;
+    Animator anim;
 
     public enum State
     {
@@ -40,6 +41,8 @@ public class Player : MonoBehaviour
         _happinessThrown = new List<HappinessController>();
         _audioSource = GetComponent<AudioSource>();
         Happiness = 50;
+
+        anim = GetComponent<Animator>();
     }
 
     // Use this for initialization
@@ -76,7 +79,10 @@ public class Player : MonoBehaviour
 
     public void HappinessCreated(HappinessController happinessController)
     {
+        //State stateBefore = GetState();
         _happiness -= happinessController.Happiness;
+        //UpdateAnimationState(stateBefore, GetState());
+
         _happinessThrown.Add(happinessController);
         if (false)
         {
@@ -87,13 +93,18 @@ public class Player : MonoBehaviour
 
     public void ConsumeHappiness(Player player)
     {
+        State stateBefore = GetState();
         _happiness += player._happiness;
+        UpdateAnimationState(stateBefore, GetState());
         Debug.Log(string.Format("Player happiness increased to {0}", _happiness));
     }
 
     public void ConsumeHappiness(HappinessController happinessController)
     {
+        //State stateBefore = GetState();
         _happiness += happinessController.Happiness;
+        //UpdateAnimationState(stateBefore, GetState());
+
         if (false)
         {
             _audioSource.PlayOneShot(BlobAbsorbedAudioClip, 1.0f);
@@ -146,6 +157,16 @@ public class Player : MonoBehaviour
         {
             return State.NoHappinessLeft;
         }
+    }
+
+    public void UpdateAnimationState(State stateBefore, State stateAfter)
+    {
+        Debug.Log("Animation  :D ");
+
+        if (stateBefore == stateAfter) return;
+
+        anim.SetBool(stateBefore.ToString(), false);
+        anim.SetBool(stateAfter.ToString(), true);
     }
 
     public string GetInputName(string name)

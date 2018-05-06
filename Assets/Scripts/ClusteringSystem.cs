@@ -26,9 +26,9 @@ public class ClusteringSystem : MonoBehaviour
     private void AttachCirclingArrayBlobs(GameObject blobPart)
     {
         //get current game object's size
-        BoxCollider2D boxCollider2D = gameObject.GetComponent<BoxCollider2D>();
-        Vector2 center = boxCollider2D.bounds.center;
-        float radius = RandomRadius(boxCollider2D);
+        CircleCollider2D ricleCollider2D = gameObject.GetComponent<CircleCollider2D>();
+        Vector2 center = ricleCollider2D.bounds.center;
+        float radius = RandomRadius(ricleCollider2D);
 
         //get original part name until last delimeter
         //string[] tokens = blobPart.name.Split('_');
