@@ -83,6 +83,6 @@ public class ThrowController : MonoBehaviour
 
     private Vector2 GetDirection()
     {
-        return new Vector2(Input.GetAxis("RightH"), Input.GetAxis("RightV"));
+        return new Vector2(Input.GetAxis("FireDirectionH"), Input.GetAxis("FireDirectionV"));
     }
 }
