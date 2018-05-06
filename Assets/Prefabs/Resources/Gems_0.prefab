@@ -25,7 +25,6 @@ GameObject:
   - component: {fileID: 114317160503378924}
   - component: {fileID: 114273306077680082}
   - component: {fileID: 114084922758562918}
-  - component: {fileID: 114623556349346722}
   m_Layer: 0
   m_Name: Gems_0
   m_TagString: Untagged
@@ -62,7 +61,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -130,17 +129,6 @@ MonoBehaviour:
   BlobCreatedAudioClip: {fileID: 0}
   BlobAbsorbedAudioClip: {fileID: 0}
   PlayerHitWall: {fileID: 0}
---- !u!114 &114623556349346722
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1749531647735394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68ae25f20d291db4b86228edcc6a030c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212835451454342198
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -2,7 +2,10 @@
 
 public class MovementController : MonoBehaviour
 {
-    private const float FORCE = 50.0f;
+    private const float multiplier = 10.0f;
+    //private const float multiplier = 100.0f;
+
+
     private Rigidbody2D _rigidbody2D;
 
     // Use this for initialization
@@ -16,11 +19,14 @@ public class MovementController : MonoBehaviour
     {
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
-        Vector2 inputs = new Vector2(x, y);
+        Vector2 delta = new Vector2(x, y);
 
-        if (inputs != Vector2.zero)
+        if (delta != Vector2.zero)
         {
-            _rigidbody2D.AddForce(new Vector2(inputs.x, inputs.y) * Time.deltaTime * FORCE);
+            Vector2 currentPosition = _rigidbody2D.position;
+
+            _rigidbody2D.MovePosition(new Vector2(currentPosition.x + delta.x * Time.deltaTime * multiplier, currentPosition.y + delta.y * Time.deltaTime * multiplier));
         }
     }
 }
+
