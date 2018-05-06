@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/StartChoosePlayers.unity
+    guid: 781f6c4e06b4ee5468bc81a58810272d
+  - enabled: 1
+    path: Assets/Scenes/RawPrototypeStage.unity
+    guid: a82184b09d4b44243a38090515f8a63d
