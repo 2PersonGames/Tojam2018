@@ -19,7 +19,6 @@ public class Player : MonoBehaviour
 
     [Range(1, 100)]
     public int Happiness;
-    public GameObject DeathParticlePrefab;
     public AudioClip BlobCreatedAudioClip;
     public AudioClip BlobAbsorbedAudioClip;
     public AudioClip PlayerHitWall;
@@ -72,7 +71,6 @@ public class Player : MonoBehaviour
             {
                 Debug.Log(string.Format("Player has sacrified themselves for another player!"));
                 otherPlayer.ConsumeHappiness(this);
-                Instantiate(DeathParticlePrefab, gameObject.transform.position, Quaternion.identity);
                 Destroy(gameObject);               
                 Debug.Log("TODO: Handle win state");
             }
