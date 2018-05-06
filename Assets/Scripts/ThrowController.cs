@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 public class ThrowController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class ThrowController : MonoBehaviour
 
     private Player _player;
     private int _proceduralHappinessValuesCurrentIndex;
+    private Vector2 _lastThrownDirection;
     
     // Use this for initialization
     void Start()
@@ -30,9 +32,21 @@ public class ThrowController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var direction = GetDirection();
-        if (direction != Vector2.zero && Input.GetButtonDown("Fire1") && _player.GetCountOfHappinessOwnedByMe() == 0)
+        if (Input.GetButtonDown("Fire1") && _player.GetCountOfHappinessOwnedByMe() == 0)
         {
+            var direction = GetDirection();
+            if (direction == Vector2.zero)
+            {
+                direction = _lastThrownDirection;
+                if (direction == Vector2.zero)
+                {
+                    var opponentPlayer = Resources.FindObjectsOfTypeAll<Player>().First(obj => obj != _player);
+                    direction = opponentPlayer.gameObject.transform.position - _player.gameObject.transform.position;
+                }
+            }
+
+            direction.Normalize();
+
             var happiness = Instantiate(ThrownObjectPrefab, gameObject.transform.position, Quaternion.identity);
             var happinessController = happiness.GetComponent<HappinessController>();
             happinessController.OriginPlayer = _player;
@@ -47,6 +61,8 @@ public class ThrowController : MonoBehaviour
             _proceduralHappinessValuesCurrentIndex = Mathf.Clamp(_proceduralHappinessValuesCurrentIndex++, 0, _proceduralHappinessValues.Length - 1);
 
             _player.HappinessCreated(happinessController);
+
+            _lastThrownDirection = direction;
         }
     }
 
