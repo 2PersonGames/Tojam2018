@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -30,6 +31,8 @@ public class Player : MonoBehaviour
     private int _playerID;
     private List<HappinessController> _happinessThrown;
 
+    private Vector2 _defaultPosition;
+
 
     public void Init()
     {
@@ -43,12 +46,16 @@ public class Player : MonoBehaviour
         Happiness = 50;
 
         anim = GetComponent<Animator>();
+
+        if (_defaultPosition != Vector2.zero) gameObject.GetComponent<Rigidbody2D>().MovePosition(_defaultPosition);
+        gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        gameObject.GetComponent<Rigidbody2D>().angularVelocity = 0.0f;
     }
 
     // Use this for initialization
     void Start()
     {
-
+        _defaultPosition = gameObject.GetComponent<Rigidbody2D>().position;
     }
 
     // Update is called once per frame
@@ -77,9 +84,7 @@ public class Player : MonoBehaviour
                     otherPlayer.ConsumeHappiness(this);
 
                     Vector2 lastPosition = transform.position;
-                    Destroy(gameObject);
-                    //Debug.Log("TODO: Handle win state");
-
+                    gameObject.SetActive(false);
 
                     GameObject stormRainCloud = new GameObject();
                     stormRainCloud.transform.position = lastPosition;
@@ -92,6 +97,12 @@ public class Player : MonoBehaviour
                     {
                         childCloud.GetComponent<SpriteRenderer>().sprite = Resources.Load<GameObject>("storm2").GetComponent<SpriteRenderer>().sprite;
                     }
+
+                    GameManager.instance.SetCurrentState(GameManager.GameState.Results);
+                    GameManager.instance.resultsCanvas.gameObject.SetActive(true);
+
+                    GameManager.instance.resultsCanvas.transform.Find("Text_PlayerWins").GetComponent<Text>().text = "Player " + _playerID + " 'wins' ...";
+
                     break;
 
                 default:

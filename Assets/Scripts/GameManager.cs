@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -9,7 +11,8 @@ public class GameManager : MonoBehaviour {
 
     private GameState _currentState;
 
-    Canvas canvas;
+    public Canvas canvas;
+    public Canvas resultsCanvas;
     Transform playerJoinStatuses;
     int playersConfirmedJoining = 0;
 
@@ -39,9 +42,6 @@ public class GameManager : MonoBehaviour {
         }
         //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
-
-        //Call the InitGame function to initialize the first level 
-        InitGame();
         
     }
 
@@ -49,52 +49,75 @@ public class GameManager : MonoBehaviour {
     {
         _currentState = GameState.Title;
 
-        canvas = GameObject.FindObjectOfType<Canvas>();
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        resultsCanvas = GameObject.Find("ResultsCanvas").GetComponent<Canvas>();
         playerJoinStatuses = canvas.transform.Find("PlayerJoinStatuses");
+
+        //Call the InitGame function to initialize the first level 
+        InitGame();
     }
 
     // Update is called once per frame
     void Update () {
 
-        if (_currentState != GameState.Title) { return; }
-
-        for (int p = 1; p <= Player.MAX_PLAYERS; p++)
+        if (_currentState == GameState.Title)
         {
-            if (Input.GetButtonDown(p + "Fire1")) // || Input.GetAxis(p + "Fire1") != 0
+
+            for (int p = 1; p <= Player.MAX_PLAYERS; p++)
             {
-                //toggle existing players
-                Text playerJoinTextField = playerJoinStatuses.Find("Text_PlayerJoined" + p).GetComponent<Text>();
-                if (playerJoinTextField.color == Color.green)
+                if (Input.GetButtonDown(p + "Fire1")) // || Input.GetAxis(p + "Fire1") != 0
                 {
-                    playerJoinTextField.color = Color.black;
-                    playerJoinTextField.text = "Sitting out.";
-                    playersConfirmedJoining--;
+                    //toggle existing players
+                    Text playerJoinTextField = playerJoinStatuses.Find("Text_PlayerJoined" + p).GetComponent<Text>();
+                    if (playerJoinTextField.color == Color.green)
+                    {
+                        playerJoinTextField.color = Color.black;
+                        playerJoinTextField.text = "Sitting out.";
+                        playersConfirmedJoining--;
+                    }
+                    else
+                    {
+                        playerJoinTextField.color = Color.green;
+                        playerJoinTextField.text = "Joined!";
+                        playersConfirmedJoining++;
+                    }
                 }
-                else
-                {
-                    playerJoinTextField.color = Color.green;
-                    playerJoinTextField.text = "Joined!";
-                    playersConfirmedJoining++;
-                }
+            }
+
+            if (Input.GetButtonDown("Submit") && playersConfirmedJoining >= 2)
+            {
+                Debug.Log("Starting game");
+                _currentState = GameState.Active;
+                canvas.gameObject.SetActive(false);
+            }
+        }
+        else if (_currentState == GameState.Results)
+        {
+            if (Input.GetButtonDown("Submit"))
+            {
+                SceneManager.LoadScene("AloneTogether.TOJam2018Edition");
             }
         }
 
-        if (Input.GetButtonDown("Submit") && playersConfirmedJoining >= 2)
-        {
-            Debug.Log("Starting game");
-            _currentState = GameState.Active;
-            canvas.gameObject.SetActive(false);
-        }
     }
 
     private void InitGame()
     {
+        _currentState = GameState.Title;
+        canvas.gameObject.SetActive(true);
+        resultsCanvas.gameObject.SetActive(false);
+
         var foundPlayers = FindObjectsOfType<Player>();
         foreach (var player in foundPlayers)
         {
             player.Init();
         }
 
+    }
+
+    public void SetCurrentState(GameState state)
+    {
+        _currentState = state;
     }
 
     public GameState getCurrentState()
