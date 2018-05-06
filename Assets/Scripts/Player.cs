@@ -13,11 +13,11 @@ public class Player : MonoBehaviour
 
     private AudioSource _audioSource;
     private int playerNumber_;
-    private List<GameObject> _happinessFired;
+    private List<HappinessController> _happinessThrown;
 
     public void Init()
     {
-        _happinessFired = new List<GameObject>();
+        _happinessThrown = new List<HappinessController>();
         _audioSource = GetComponent<AudioSource>();
         Happiness = 50;
         playerNumber_ = ++playerCounter;
@@ -44,10 +44,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void BlobCreated(GameObject happiness)
+    public void HappinessCreated(HappinessController happinessController)
     {
-        Happiness--;
-        _happinessFired.Add(happiness);
+        Happiness -= happinessController.Happiness;
+        _happinessThrown.Add(happinessController);
         if (false)
         {
             _audioSource.PlayOneShot(BlobCreatedAudioClip, 1.0f);
@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
 
     public void ConsumeHappiness(HappinessController happinessController)
     {
-        Happiness++;
+        Happiness += happinessController.Happiness;
         if (false)
         {
             _audioSource.PlayOneShot(BlobAbsorbedAudioClip, 1.0f);
@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
 
         foreach (var player in Resources.FindObjectsOfTypeAll<Player>())
         {
-            if (player._happinessFired.Remove(happinessController.gameObject) && player == this)
+            if (player._happinessThrown.Remove(happinessController) && player == this)
             {
                 Debug.Log(string.Format("Player absorbed their own happiness!"));
             }
@@ -75,13 +75,13 @@ public class Player : MonoBehaviour
         Debug.Log(string.Format("Player happiness increased to {0}", Happiness));
     }
 
-    public bool IsHappinessOwnedByme(GameObject happiness)
+    public bool IsHappinessOwnedByme(HappinessController happinessController)
     {
-        return _happinessFired.Contains(happiness);
+        return _happinessThrown.Contains(happinessController);
     }
 
     public int GetCountOfHappinessOwnedByMe()
     {
-        return _happinessFired.Count;
+        return _happinessThrown.Count;
     }
 }
