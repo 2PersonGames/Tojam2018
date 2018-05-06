@@ -33,7 +33,9 @@ public class ThrowController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && _player.GetCountOfHappinessOwnedByMe() == 0)
+        if (Input.GetButtonDown("Fire1") 
+            && _player.GetCountOfHappinessOwnedByMe() == 0
+            && _player.GetState() != Player.State.NoHappinessLeft)
         {
             var direction = GetDirection();
             if (direction == Vector2.zero)

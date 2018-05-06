@@ -53,6 +53,16 @@ public class Player : MonoBehaviour
             Debug.Log(string.Format("Player collided with {0}!", gameObject.name));
             _audioSource.PlayOneShot(PlayerHitWall, 1.0f);
         }
+        else if (GetState() == State.NoHappinessLeft)
+        {
+            var otherPlayer = collision2D.gameObject.GetComponent<Player>();
+            if (otherPlayer != null)
+            {
+                Debug.Log(string.Format("Player has sacrified themselves for another player!"));
+                Destroy(gameObject);
+                Debug.Log("TODO: Handle win state");
+            }
+        }
     }
 
     public void HappinessCreated(HappinessController happinessController)
