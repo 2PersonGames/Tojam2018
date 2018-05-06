@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision2D)
     {
-        if (collision2D.gameObject.name == "Blocks_1")
+        if (false && collision2D.gameObject.name.StartsWith("Blocks_1"))
         {
             Debug.Log(string.Format("Player collided with {0}!", gameObject.name));
             _audioSource.PlayOneShot(PlayerHitWall, 1.0f);
