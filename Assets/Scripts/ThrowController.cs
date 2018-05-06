@@ -36,6 +36,8 @@ public class ThrowController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.instance.isGameStateActive()) { return; }
+
         // cooldown logic
         if (_throwCooldown > 0.0f)
         {
