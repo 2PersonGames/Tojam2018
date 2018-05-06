@@ -6,7 +6,7 @@ InputManager:
   serializedVersion: 2
   m_Axes:
   - serializedVersion: 3
-    m_Name: ---KEYBOARD---
+    m_Name: -----KEYBOARD-----
     descriptiveName:
     descriptiveNegativeName: 
     negativeButton: 
@@ -22,7 +22,23 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Horizontal
+    m_Name: ---PLAYER 1---
+    descriptiveName:
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton:
+    altPositiveButton:
+    gravity: 0
+    dead: 0
+    sensitivity: 0
+    snap: 1
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: 1Horizontal
     descriptiveName: kb -- for keyboard user
     descriptiveNegativeName: 
     negativeButton: 
@@ -38,7 +54,7 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Vertical
+    m_Name: 1Vertical
     descriptiveName: kb -- for keyboard user
     descriptiveNegativeName: 
     negativeButton: 
@@ -54,7 +70,7 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: FireDirectionH
+    m_Name: 1FireDirectionH
     descriptiveName: kb -- for keyboard user
     descriptiveNegativeName: 
     negativeButton: left
@@ -70,7 +86,7 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: FireDirectionV
+    m_Name: 1FireDirectionV
     descriptiveName: kb -- for keyboard user
     descriptiveNegativeName: 
     negativeButton: down
@@ -86,7 +102,7 @@ InputManager:
     axis: 1
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Fire1
+    m_Name: 1Fire1
     descriptiveName: kb -- for keyboard user
     descriptiveNegativeName: 
     negativeButton: 
@@ -102,7 +118,7 @@ InputManager:
     axis: 0
     joyNum: 0    
   - serializedVersion: 3
-    m_Name: ---JOYSTICKS---
+    m_Name: -----JOYSTICKS-----
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -117,8 +133,23 @@ InputManager:
     type: 0
     axis: 0
     joyNum: 0    
+  - m_Name: ---PLAYER 1---
+    descriptiveName:
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton:
+    altPositiveButton:
+    gravity: 0
+    dead: 0
+    sensitivity: 0
+    snap: 1
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
   - serializedVersion: 3
-    m_Name: Horizontal
+    m_Name: 1Horizontal
     descriptiveName: joy -- for controller like xbox, etc
     descriptiveNegativeName: 
     negativeButton: 
@@ -134,7 +165,7 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Vertical
+    m_Name: 1Vertical
     descriptiveName: joy -- for controller like xbox, etc
     descriptiveNegativeName: 
     negativeButton: 
@@ -150,7 +181,7 @@ InputManager:
     axis: 1
     joyNum: 0
   - serializedVersion: 3
-    m_Name: FireDirectionH
+    m_Name: 1FireDirectionH
     descriptiveName: joy -- for controller like xbox, etc
     descriptiveNegativeName: 
     negativeButton: 
@@ -166,7 +197,7 @@ InputManager:
     axis: 3
     joyNum: 0
   - serializedVersion: 3
-    m_Name: FireDirectionV
+    m_Name: 1FireDirectionV
     descriptiveName: joy -- for controller like xbox, etc
     descriptiveNegativeName: 
     negativeButton: 
@@ -182,7 +213,7 @@ InputManager:
     axis: 4
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Fire1
+    m_Name: 1Fire1
     descriptiveName: joy -- for controller like xbox, etc
     descriptiveNegativeName: 
     negativeButton: 
@@ -198,7 +229,117 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Fire1
+    m_Name: 1Fire1
+    descriptiveName: joy -- for controller like xbox, etc
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick button 5
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - m_Name: ---PLAYER 2---
+    descriptiveName:
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton:
+    altPositiveButton:
+    gravity: 0
+    dead: 0
+    sensitivity: 0
+    snap: 1
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - m_Name: 2Horizontal
+    descriptiveName: joy -- for controller like xbox, etc
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: 2Vertical
+    descriptiveName: joy -- for controller like xbox, etc
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 1
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: 2FireDirectionH
+    descriptiveName: joy -- for controller like xbox, etc
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 3
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: 2FireDirectionV
+    descriptiveName: joy -- for controller like xbox, etc
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 4
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: 2Fire1
+    descriptiveName: joy -- for controller like xbox, etc
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick button 0
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: 2Fire1
     descriptiveName: joy -- for controller like xbox, etc
     descriptiveNegativeName: 
     negativeButton: 
@@ -214,7 +355,7 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: ---UNUSED---
+    m_Name: -----UNUSED-----
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 

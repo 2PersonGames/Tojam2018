@@ -13,7 +13,9 @@ public class Player : MonoBehaviour
     };
 
     private static int playerCounter = 0;
-    
+
+    [Range(1, 100)]
+    public int Happiness;
     public AudioClip BlobCreatedAudioClip;
     public AudioClip BlobAbsorbedAudioClip;
     public AudioClip PlayerHitWall;
@@ -21,17 +23,20 @@ public class Player : MonoBehaviour
     private int _startingHappiness;
     private int _happiness;
     private AudioSource _audioSource;
-    private int _playerNumber;
+    public int playerID_ { get; private set; }
+    private List<GameObject> _happinessFired;
     private List<HappinessController> _happinessThrown;
 
     public void Init()
     {
         _happiness = 25;
         _startingHappiness = _happiness;
-        _playerNumber = ++playerCounter;
+        playerID_ = ++playerCounter;
 
         _happinessThrown = new List<HappinessController>();
         _audioSource = GetComponent<AudioSource>();
+        Happiness = 50;
+        playerID_ = ++playerCounter;
     }
 
     // Use this for initialization

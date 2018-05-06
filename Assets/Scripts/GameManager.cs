@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+	void Awake () {
 
         var foundPlayers = FindObjectsOfType<Player>();
         foreach (var player in foundPlayers)
         {
             player.Init();
-
-            //maybe assign controls here
         }
 
 

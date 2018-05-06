@@ -33,7 +33,7 @@ public class ThrowController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") 
+        if (Input.GetButtonDown(_player.playerID_ + "Fire1") 
             && _player.GetCountOfHappinessOwnedByMe() == 0
             && _player.GetState() != Player.State.NoHappinessLeft)
         {
@@ -83,6 +83,6 @@ public class ThrowController : MonoBehaviour
 
     private Vector2 GetDirection()
     {
-        return new Vector2(Input.GetAxis("FireDirectionH"), Input.GetAxis("FireDirectionV"));
+        return new Vector2(Input.GetAxis(_player.playerID_ + "FireDirectionH"), Input.GetAxis(_player.playerID_ + "FireDirectionV"));
     }
 }
