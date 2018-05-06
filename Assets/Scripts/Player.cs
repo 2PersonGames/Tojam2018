@@ -5,22 +5,22 @@ public class Player : MonoBehaviour
 {
     private static int playerCounter = 0;
     
-    [Range(1, 100)]
-    public int Happiness;
     public AudioClip BlobCreatedAudioClip;
     public AudioClip BlobAbsorbedAudioClip;
     public AudioClip PlayerHitWall;
 
+    private int _happiness;
     private AudioSource _audioSource;
-    private int playerNumber_;
-    private List<GameObject> _happinessFired;
+    private int _playerNumber;
+    private List<HappinessController> _happinessThrown;
 
     public void Init()
     {
-        _happinessFired = new List<GameObject>();
+        _happiness = 25;
+        _playerNumber = ++playerCounter;
+
+        _happinessThrown = new List<HappinessController>();
         _audioSource = GetComponent<AudioSource>();
-        Happiness = 50;
-        playerNumber_ = ++playerCounter;
     }
 
     // Use this for initialization
@@ -44,20 +44,20 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void BlobCreated(GameObject happiness)
+    public void HappinessCreated(HappinessController happinessController)
     {
-        Happiness--;
-        _happinessFired.Add(happiness);
+        _happiness -= happinessController.Happiness;
+        _happinessThrown.Add(happinessController);
         if (false)
         {
             _audioSource.PlayOneShot(BlobCreatedAudioClip, 1.0f);
         }
-        Debug.Log(string.Format("Player happiness decreased to {0}", Happiness));
+        Debug.Log(string.Format("Player happiness decreased to {0}", _happiness));
     }
 
     public void ConsumeHappiness(HappinessController happinessController)
     {
-        Happiness++;
+        _happiness += happinessController.Happiness;
         if (false)
         {
             _audioSource.PlayOneShot(BlobAbsorbedAudioClip, 1.0f);
@@ -65,23 +65,23 @@ public class Player : MonoBehaviour
 
         foreach (var player in Resources.FindObjectsOfTypeAll<Player>())
         {
-            if (player._happinessFired.Remove(happinessController.gameObject) && player == this)
+            if (player._happinessThrown.Remove(happinessController) && player == this)
             {
                 Debug.Log(string.Format("Player absorbed their own happiness!"));
             }
             break;
         }
 
-        Debug.Log(string.Format("Player happiness increased to {0}", Happiness));
+        Debug.Log(string.Format("Player happiness increased to {0}", _happiness));
     }
 
-    public bool IsHappinessOwnedByme(GameObject happiness)
+    public bool IsHappinessOwnedByme(HappinessController happinessController)
     {
-        return _happinessFired.Contains(happiness);
+        return _happinessThrown.Contains(happinessController);
     }
 
     public int GetCountOfHappinessOwnedByMe()
     {
-        return _happinessFired.Count;
+        return _happinessThrown.Count;
     }
 }
