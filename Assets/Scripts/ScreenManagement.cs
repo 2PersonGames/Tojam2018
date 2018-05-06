@@ -50,6 +50,7 @@ public class ScreenManagement : MonoBehaviour {
 
         if (Input.GetButtonDown("Submit")) //  || Input.GetAxis(p + "Fire1") != 0
         {
+            Debug.Log("Starting game");
             VerifyEnabledPlayersThenBegin();
         }
 	}
