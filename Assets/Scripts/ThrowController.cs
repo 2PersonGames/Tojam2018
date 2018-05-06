@@ -11,7 +11,7 @@ public class ThrowController : MonoBehaviour
     private Player _player;
     private int _proceduralHappinessValuesCurrentIndex;
     private Vector2 _lastThrownDirection;
-    
+
     // Use this for initialization
     void Start()
     {
@@ -47,12 +47,20 @@ public class ThrowController : MonoBehaviour
 
             direction.Normalize();
 
-            var happiness = Instantiate(ThrownObjectPrefab, gameObject.transform.position, Quaternion.identity);
+            var playerVelocity = _player.GetComponent<Rigidbody2D>().velocity;
+            var position = gameObject.transform.position;
+            var distanceAwayFromCollision = direction * 0.5f 
+                * ((Vector2.SqrMagnitude(_player.GetComponent<BoxCollider2D>().size))
+                    + (Vector2.SqrMagnitude(ThrownObjectPrefab.GetComponent<BoxCollider2D>().size)));
+            distanceAwayFromCollision += playerVelocity * Time.fixedDeltaTime * 2.0f;
+            position += new Vector3(distanceAwayFromCollision.x, distanceAwayFromCollision.y, 0.0f);
+
+            var happiness = Instantiate(ThrownObjectPrefab, position, Quaternion.identity);
             var happinessController = happiness.GetComponent<HappinessController>();
             happinessController.OriginPlayer = _player;
 
             var happinessRigidBody2D = happiness.GetComponent<Rigidbody2D>();
-            happinessRigidBody2D.velocity = _player.GetComponent<Rigidbody2D>().velocity;
+            happinessRigidBody2D.velocity = playerVelocity;
             happinessRigidBody2D.AddForce(
                 (direction * Time.deltaTime * FORCE),
                 ForceMode2D.Impulse);
