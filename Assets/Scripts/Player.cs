@@ -103,9 +103,9 @@ public class Player : MonoBehaviour
 
     public void HappinessCreated(HappinessController happinessController)
     {
-        //State stateBefore = GetState();
+        State stateBefore = GetState();
         _happiness -= happinessController.Happiness;
-        //UpdateAnimationState(stateBefore, GetState());
+        UpdateAnimationState(stateBefore, GetState());
 
         _happinessThrown.Add(happinessController);
         if (false)
@@ -120,12 +120,15 @@ public class Player : MonoBehaviour
         State stateBefore = GetState();
         _happiness += player._happiness;
         UpdateAnimationState(stateBefore, GetState());
+
         Debug.Log(string.Format("Player happiness increased to {0}", _happiness));
     }
 
     public void ConsumeHappiness(HappinessController happinessController)
     {
+        State stateBefore = GetState();
         _happiness += happinessController.Happiness;
+        UpdateAnimationState(stateBefore, GetState());
 
         _audioSource.PlayOneShot(BlobAbsorbedAudioClip[(int)GetState()], 1.0f);
 
@@ -180,10 +183,9 @@ public class Player : MonoBehaviour
 
     public void UpdateAnimationState(State stateBefore, State stateAfter)
     {
-        Debug.Log("Animation  :D ");
-
         if (stateBefore == stateAfter) return;
 
+        Debug.Log("Animation State change :D ");
         anim.SetBool(stateBefore.ToString(), false);
         anim.SetBool(stateAfter.ToString(), true);
     }

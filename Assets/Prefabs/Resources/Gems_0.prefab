@@ -21,13 +21,12 @@ GameObject:
   - component: {fileID: 4242098187260086}
   - component: {fileID: 212835451454342198}
   - component: {fileID: 50997747696560732}
-  - component: {fileID: 61805666682991518}
   - component: {fileID: 114317160503378924}
   - component: {fileID: 114273306077680082}
   - component: {fileID: 114084922758562918}
-  - component: {fileID: 95252637454473298}
   - component: {fileID: 58910938713270726}
   - component: {fileID: 82364955118442126}
+  - component: {fileID: 95822743032052060}
   m_Layer: 0
   m_Name: Gems_0
   m_TagString: Untagged
@@ -42,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1749531647735394}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 0, z: 0}
+  m_LocalPosition: {x: 3.69, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,31 +82,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.64
---- !u!61 &61805666682991518
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1749531647735394}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.28}
-    newSize: {x: 0.32, y: 0.32}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.32}
-  m_EdgeRadius: 0
 --- !u!82 &82364955118442126
 AudioSource:
   m_ObjectHideFlags: 1
@@ -188,7 +162,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!95 &95252637454473298
+--- !u!95 &95822743032052060
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -248,7 +222,6 @@ MonoBehaviour:
   Happiness: 50
   BlobCreatedAudioClip: {fileID: 0}
   BlobAbsorbedAudioClip:
-  - {fileID: 8300000, guid: 590fbdced6f206c4cb1a5691f07a7170, type: 3}
   - {fileID: 8300000, guid: 590fbdced6f206c4cb1a5691f07a7170, type: 3}
   - {fileID: 8300000, guid: 6af7ff996a821384498a4ecf2b4c6912, type: 3}
   - {fileID: 8300000, guid: de505a009eaa2a94ab80462dc5267b2a, type: 3}
