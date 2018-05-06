@@ -49,7 +49,7 @@ public class ThrowController : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Fire1")
+        if (Input.GetButtonDown(_player._playerID + "Fire1")
             && !_cooldownActive
             && _player.GetCountOfHappinessOwnedByMe() < 3
             && _player.GetState() != Player.State.NoHappinessLeft)
@@ -102,6 +102,6 @@ public class ThrowController : MonoBehaviour
 
     private Vector2 GetDirection()
     {
-        return new Vector2(Input.GetAxis("RightH"), Input.GetAxis("RightV"));
+        return new Vector2(Input.GetAxis(_player._playerID + "FireDirectionH"), Input.GetAxis(_player._playerID + "FireDirectionV"));
     }
 }

@@ -7,18 +7,20 @@ public class MovementController : MonoBehaviour
 
 
     private Rigidbody2D _rigidbody2D;
+    private Player _player;
 
     // Use this for initialization
     void Start()
     {
         _rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
+        _player = gameObject.GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
+        float x = Input.GetAxis(_player._playerID + "Horizontal");
+        float y = Input.GetAxis(_player._playerID + "Vertical");
         Vector2 delta = new Vector2(x, y);
 
         if (delta != Vector2.zero)
