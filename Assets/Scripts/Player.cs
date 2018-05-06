@@ -20,8 +20,8 @@ public class Player : MonoBehaviour
     [Range(1, 100)]
     public int Happiness;
     public AudioClip BlobCreatedAudioClip;
-    public AudioClip[] BlobAbsorbedAudioClip ;
-    public AudioClip PlayerHitWall;
+    public AudioClip[] BlobAbsorbedAudioClip;
+    public AudioClip[] PlayerHitWall;
 
     private int _startingHappiness;
     private int _happiness;
@@ -59,20 +59,26 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision2D)
     {
-        if (false && collision2D.gameObject.name.StartsWith("Blocks_1"))
+        var otherPlayer = collision2D.gameObject.GetComponent<Player>();
+        if (collision2D.gameObject.name == "RoomWalls")
         {
             Debug.Log(string.Format("Player collided with {0}!", gameObject.name));
-            _audioSource.PlayOneShot(PlayerHitWall, 1.0f);
+            _audioSource.PlayOneShot(PlayerHitWall[Random.Range(0, PlayerHitWall.Length)], 0.25f);
         }
-        else if (GetState() == State.NoHappinessLeft)
+        else if (otherPlayer != null)
         {
-            var otherPlayer = collision2D.gameObject.GetComponent<Player>();
-            if (otherPlayer != null)
+            switch (GetState())
             {
-                Debug.Log(string.Format("Player has sacrified themselves for another player!"));
-                otherPlayer.ConsumeHappiness(this);
-                Destroy(gameObject);               
-                Debug.Log("TODO: Handle win state");
+                case State.NoHappinessLeft:
+                    Debug.Log(string.Format("Player has sacrified themselves for another player!"));
+                    otherPlayer.ConsumeHappiness(this);
+                    Destroy(gameObject);
+                    Debug.Log("TODO: Handle win state");
+                    break;
+
+                default:
+                    _audioSource.PlayOneShot(PlayerHitWall[Random.Range(0, PlayerHitWall.Length)], 0.25f);
+                    break;
             }
         }
     }
