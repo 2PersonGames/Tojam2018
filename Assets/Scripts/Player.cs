@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
         Debug.Log(string.Format("Player happiness decreased to {0}", Happiness));
     }
 
-    public void ConsumeHappiness(BlobController happinessController)
+    public void ConsumeHappiness(HappinessController happinessController)
     {
         Happiness++;
         if (false)

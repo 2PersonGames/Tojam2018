@@ -21,7 +21,7 @@ public class ThrowController : MonoBehaviour
             if (direction != Vector2.zero && Input.GetButtonDown("Fire1") && _player.GetCountOfHappinessOwnedByMe() == 0)
             {
                 var happiness = Instantiate(ThrownObjectPrefab, gameObject.transform.position, Quaternion.identity);
-                happiness.GetComponent<BlobController>().OriginPlayer = _player;
+                happiness.GetComponent<HappinessController>().OriginPlayer = _player;
 
                 var happinessRigidBody2D = happiness.GetComponent<Rigidbody2D>();
                 happinessRigidBody2D.velocity = _player.GetComponent<Rigidbody2D>().velocity;

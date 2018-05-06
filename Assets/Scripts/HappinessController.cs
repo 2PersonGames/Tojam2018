@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class BlobController : MonoBehaviour
+public class HappinessController : MonoBehaviour
 {
     public Player OriginPlayer { private get; set; }
 
