@@ -59,7 +59,8 @@ public class Player : MonoBehaviour
             if (otherPlayer != null)
             {
                 Debug.Log(string.Format("Player has sacrified themselves for another player!"));
-                Destroy(gameObject);
+                otherPlayer.ConsumeHappiness(this);
+                Destroy(gameObject);                
                 Debug.Log("TODO: Handle win state");
             }
         }
@@ -74,6 +75,13 @@ public class Player : MonoBehaviour
             _audioSource.PlayOneShot(BlobCreatedAudioClip, 1.0f);
         }
         Debug.Log(string.Format("Player happiness decreased to {0}", _happiness));
+    }
+
+    public void ConsumeHappiness(Player player)
+    {
+        _happiness += player._happiness;
+
+        Debug.Log(string.Format("Player happiness increased to {0}", _happiness));
     }
 
     public void ConsumeHappiness(HappinessController happinessController)
