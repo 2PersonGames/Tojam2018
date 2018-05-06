@@ -6,8 +6,10 @@ public class ThrowController : MonoBehaviour
     public const byte MAX_HAPPINESS_THROW = 3;
     private const float FORCE = 0.065f;
     private const float THROW_COOLDOWN_LENGTH = 0.75f;
-    private static byte[] _proceduralHappinessValues = new byte[8];
 
+    private static readonly byte[] _proceduralHappinessValues;
+
+    public Sprite[] ThrowingSprites;
     public GameObject ThrownObjectPrefab;
 
     private Player _player;
@@ -15,21 +17,18 @@ public class ThrowController : MonoBehaviour
     private Vector2 _lastThrownDirection;
     private float _throwCooldown;
 
+    static ThrowController()
+    {
+        _proceduralHappinessValues = new byte[]
+        {
+            1, 2, 2, 3, 1, 2, 3, 1, 2
+        };
+    }
+
     // Use this for initialization
     void Start()
     {
         _player = gameObject.GetComponent<Player>();
-
-        lock (_proceduralHappinessValues)
-        {
-            if (_proceduralHappinessValues[0] == 0)
-            {
-                for (int i = 0; i < _proceduralHappinessValues.Length; i++)
-                {
-                    _proceduralHappinessValues[i] = (byte)Random.Range(1, MAX_HAPPINESS_THROW);
-                }
-            }
-        }
     }
 
     // Update is called once per frame
@@ -83,11 +82,12 @@ public class ThrowController : MonoBehaviour
                 (direction * Time.deltaTime * FORCE),
                 ForceMode2D.Impulse);
 
-            happinessController.Happiness = _proceduralHappinessValues[_proceduralHappinessValuesCurrentIndex];
-            _proceduralHappinessValuesCurrentIndex = Mathf.Clamp(_proceduralHappinessValuesCurrentIndex++, 0, _proceduralHappinessValues.Length - 1);
+            var happinessAmount = _proceduralHappinessValues[_proceduralHappinessValuesCurrentIndex];
+            happinessController.Happiness = happinessAmount;
+            happiness.GetComponent<SpriteRenderer>().sprite = ThrowingSprites[happinessAmount - 1];
+            _proceduralHappinessValuesCurrentIndex = Mathf.Clamp(++_proceduralHappinessValuesCurrentIndex, 0, _proceduralHappinessValues.Length - 1);
 
             _player.HappinessCreated(happinessController);
-
             _lastThrownDirection = direction;
             _throwCooldown = THROW_COOLDOWN_LENGTH;
         }

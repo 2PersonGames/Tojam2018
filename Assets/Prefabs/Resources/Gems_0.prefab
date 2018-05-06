@@ -112,6 +112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c99bf97e15f2c0f47bf0e1d74d645d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ThrowingSprites:
+  - {fileID: 21300000, guid: 4bc789bfdf94d5349a92e1e4f804f0c0, type: 3}
+  - {fileID: 21300000, guid: 610055cd08c34ab4d8a5dfb553e9325f, type: 3}
+  - {fileID: 21300000, guid: 503da545aee71414894ccba275d5c475, type: 3}
   ThrownObjectPrefab: {fileID: 1749531647735394, guid: 17770647dd946e944a6d5861f6e4e6ab,
     type: 2}
 --- !u!114 &114317160503378924
