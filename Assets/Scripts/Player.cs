@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
                     break;
 
                 default:
-                    _audioSource.PlayOneShot(PlayerHitWall[Random.Range(0, PlayerHitWall.Length)], 0.25f);
+                    _audioSource.PlayOneShot(PlayerHitWall[Random.Range(0, PlayerHitWall.Length)], 5.0f);
                     break;
             }
         }

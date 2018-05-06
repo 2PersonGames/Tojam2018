@@ -6,6 +6,13 @@ PC for Windows.
 Xbox 360 controllers.
 2 to 4 players.
 
+### Gameplay images
+
+![Game play 1](https://raw.githubusercontent.com/2PersonGames/Tojam2018/dev/Readme/sad-happy.png "Game play.") 
+![Game play 2](https://raw.githubusercontent.com/2PersonGames/Tojam2018/dev/Readme/sad-happy2.png "Game play.") 
+![Game play 3](https://raw.githubusercontent.com/2PersonGames/Tojam2018/dev/Readme/sad-happy3.png "Game play.") 
+
+
 
 ### Player Documentation
 
@@ -25,6 +32,5 @@ Xbox 360 controllers.
 - Created in Unity 2017.1.0f3 
 
 ![controller layout](https://raw.githubusercontent.com/2PersonGames/Tojam2018/dev/Readme/600px-X360Controller2.png "Xbox 360 controller layout and identifiers.") [source](http://wiki.unity3d.com/index.php?title=Xbox360Controller)
-
 
 
