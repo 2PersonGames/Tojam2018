@@ -20,14 +20,17 @@ public class Player : MonoBehaviour
 
     private int _startingHappiness;
     private int _happiness;
+    private int _maxHappiness;
     private AudioSource _audioSource;
     private int _playerNumber;
     private List<HappinessController> _happinessThrown;
+
 
     public void Init()
     {
         _happiness = 25;
         _startingHappiness = _happiness;
+        _maxHappiness = _startingHappiness * 2;
         _playerNumber = ++playerCounter;
 
         _happinessThrown = new List<HappinessController>();
@@ -116,16 +119,15 @@ public class Player : MonoBehaviour
 
     public State GetState()
     {
-        var maxHappiness = _startingHappiness * 2;
-        if (_happiness >= maxHappiness)
+        if (_happiness >= _maxHappiness)
         {
             return State.FullHappiness;
         }
-        else if (_happiness >= maxHappiness * 0.7f)
+        else if (_happiness >= _maxHappiness * 0.7f)
         {
             return State.FourFifths;
         }
-        else if (_happiness >= maxHappiness * 0.3f)
+        else if (_happiness >= _maxHappiness * 0.3f)
         {
             return State.Normal;
         }

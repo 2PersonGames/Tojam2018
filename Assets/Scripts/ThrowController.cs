@@ -5,6 +5,7 @@ public class ThrowController : MonoBehaviour
 {
     public const byte MAX_HAPPINESS_THROW = 3;
     private const float FORCE = 500.0f;
+    private const float COOLDOWN_LENGTH = 2.0f;
     private static byte[] _proceduralHappinessValues = new byte[8];
 
     public GameObject ThrownObjectPrefab;
@@ -12,6 +13,9 @@ public class ThrowController : MonoBehaviour
     private Player _player;
     private int _proceduralHappinessValuesCurrentIndex;
     private Vector2 _lastThrownDirection;
+
+    private bool _cooldownActive = false;
+    private float _cooldown = COOLDOWN_LENGTH;
 
     // Use this for initialization
     void Start()
@@ -33,8 +37,21 @@ public class ThrowController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") 
-            && _player.GetCountOfHappinessOwnedByMe() == 0
+
+        // cooldown logic
+        if (_cooldownActive)
+        {
+            _cooldown -= Time.deltaTime;
+            if (_cooldown < 0.0f)
+            {
+                _cooldownActive = false;
+                _cooldown = COOLDOWN_LENGTH;
+            }
+        }
+
+        if (Input.GetButtonDown("Fire1")
+            && !_cooldownActive
+            && _player.GetCountOfHappinessOwnedByMe() < 3
             && _player.GetState() != Player.State.NoHappinessLeft)
         {
             var direction = GetDirection();
@@ -78,6 +95,8 @@ public class ThrowController : MonoBehaviour
             _player.HappinessCreated(happinessController);
 
             _lastThrownDirection = direction;
+
+            _cooldownActive = true;
         }
     }
 

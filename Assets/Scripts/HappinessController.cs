@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+// Has the following uses:
+//  prevents happiness from colliding with player immediately upon firing, by delaying collision detection until some time has passed
 
 public class HappinessController : MonoBehaviour
 {
