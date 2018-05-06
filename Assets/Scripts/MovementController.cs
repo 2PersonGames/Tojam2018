@@ -19,8 +19,8 @@ public class MovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float x = Input.GetAxis(_player._playerID + "Horizontal");
-        float y = Input.GetAxis(_player._playerID + "Vertical");
+        float x = Input.GetAxis(_player.GetInputName("Horizontal"));
+        float y = Input.GetAxis(_player.GetInputName("Vertical"));
         Vector2 delta = new Vector2(x, y);
 
         if (delta != Vector2.zero)

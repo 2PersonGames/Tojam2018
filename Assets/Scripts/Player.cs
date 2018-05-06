@@ -26,8 +26,7 @@ public class Player : MonoBehaviour
     private int _happiness;
     private int _maxHappiness;
     private AudioSource _audioSource;
-    public int _playerID;
-    private List<GameObject> _happinessFired;
+    private int _playerID;
     private List<HappinessController> _happinessThrown;
 
 
@@ -147,5 +146,10 @@ public class Player : MonoBehaviour
         {
             return State.NoHappinessLeft;
         }
+    }
+
+    public string GetInputName(string name)
+    {
+        return string.Format("{0}{1}", _playerID, name);
     }
 }
