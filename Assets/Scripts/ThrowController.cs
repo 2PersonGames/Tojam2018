@@ -69,7 +69,11 @@ public class ThrowController : MonoBehaviour
             var happinessAmount = _proceduralHappinessValues[_proceduralHappinessValuesCurrentIndex];
             happinessController.Happiness = happinessAmount;
             happiness.GetComponent<SpriteRenderer>().sprite = ThrowingSprites[happinessAmount - 1];
-            _proceduralHappinessValuesCurrentIndex = Mathf.Clamp(++_proceduralHappinessValuesCurrentIndex, 0, _proceduralHappinessValues.Length - 1);
+            _proceduralHappinessValuesCurrentIndex++;
+            if (_proceduralHappinessValuesCurrentIndex >= _proceduralHappinessValues.Length)
+            {
+                _proceduralHappinessValuesCurrentIndex = 0;
+            }
 
             _player.HappinessCreated(happinessController);
             _lastThrownDirection = direction;
