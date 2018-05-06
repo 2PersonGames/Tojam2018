@@ -3,6 +3,7 @@
 public class HappinessController : MonoBehaviour
 {
     public Player OriginPlayer { private get; set; }
+    public byte Happiness { get; set; }
 
     private float _originPlayerTimer;
 
