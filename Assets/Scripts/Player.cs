@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -12,9 +13,11 @@ public class Player : MonoBehaviour
 
     private AudioSource _audioSource;
     private int playerNumber_;
+    private List<GameObject> _happinessFired;
 
     public void Init()
     {
+        _happinessFired = new List<GameObject>();
         _audioSource = GetComponent<AudioSource>();
         Happiness = 50;
         playerNumber_ = ++playerCounter;
@@ -41,9 +44,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void BlobCreated(GameObject blog)
+    public void BlobCreated(GameObject happiness)
     {
         Happiness--;
+        _happinessFired.Add(happiness);
         if (false)
         {
             _audioSource.PlayOneShot(BlobCreatedAudioClip, 1.0f);
@@ -51,13 +55,33 @@ public class Player : MonoBehaviour
         Debug.Log(string.Format("Player happiness decreased to {0}", Happiness));
     }
 
-    public void ConsumeBlob(BlobController blobController)
+    public void ConsumeHappiness(BlobController happinessController)
     {
         Happiness++;
         if (false)
         {
             _audioSource.PlayOneShot(BlobAbsorbedAudioClip, 1.0f);
         }
+
+        foreach (var player in Resources.FindObjectsOfTypeAll<Player>())
+        {
+            if (player._happinessFired.Remove(happinessController.gameObject) && player == this)
+            {
+                Debug.Log(string.Format("Player absorbed their own happiness!"));
+            }
+            break;
+        }
+
         Debug.Log(string.Format("Player happiness increased to {0}", Happiness));
+    }
+
+    public bool IsHappinessOwnedByme(GameObject happiness)
+    {
+        return _happinessFired.Contains(happiness);
+    }
+
+    public int GetCountOfHappinessOwnedByMe()
+    {
+        return _happinessFired.Count;
     }
 }

@@ -17,17 +17,20 @@ public class ThrowController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var direction = GetDirection();
-        if (direction != Vector2.zero && Input.GetButtonDown("Fire1"))
-        {
-            var blob = Instantiate(ThrownObjectPrefab, gameObject.transform.position, Quaternion.identity);
-            blob.GetComponent<BlobController>().OriginPlayer = _player;
-            blob.GetComponent<Rigidbody2D>().AddForce(
-                (direction * Time.deltaTime * FORCE), 
-                ForceMode2D.Impulse);
+            var direction = GetDirection();
+            if (direction != Vector2.zero && Input.GetButtonDown("Fire1") && _player.GetCountOfHappinessOwnedByMe() == 0)
+            {
+                var happiness = Instantiate(ThrownObjectPrefab, gameObject.transform.position, Quaternion.identity);
+                happiness.GetComponent<BlobController>().OriginPlayer = _player;
 
-            _player.BlobCreated(blob);
-        }
+                var happinessRigidBody2D = happiness.GetComponent<Rigidbody2D>();
+                happinessRigidBody2D.velocity = _player.GetComponent<Rigidbody2D>().velocity;
+                happinessRigidBody2D.AddForce(
+                    (direction * Time.deltaTime * FORCE),
+                    ForceMode2D.Impulse);
+
+                _player.BlobCreated(happiness);
+            }
     }
 
     private Vector2 GetDirection()

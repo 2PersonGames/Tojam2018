@@ -31,7 +31,7 @@ public class BlobController : MonoBehaviour
         if (player != null && player != OriginPlayer)
         {
             Debug.Log(string.Format("Player collided with {0}!", gameObject.name));
-            player.ConsumeBlob(this);
+            player.ConsumeHappiness(this);
             Destroy(gameObject);
         }
     }
