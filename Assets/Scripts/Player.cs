@@ -8,11 +8,11 @@ public class Player : MonoBehaviour
 
     public enum State
     {
-        FullHappiness,
-        FourFifths,
-        Normal,
-        TwoFifths,
-        NoHappinessLeft
+        FullHappiness = 4,
+        FourFifths = 3,
+        Normal = 2,
+        TwoFifths = 1,
+        NoHappinessLeft = 0
     };
 
     private static int playerCounter = 1;
@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     [Range(1, 100)]
     public int Happiness;
     public AudioClip BlobCreatedAudioClip;
-    public AudioClip BlobAbsorbedAudioClip;
+    public AudioClip[] BlobAbsorbedAudioClip ;
     public AudioClip PlayerHitWall;
 
     private int _startingHappiness;
@@ -101,14 +101,9 @@ public class Player : MonoBehaviour
 
     public void ConsumeHappiness(HappinessController happinessController)
     {
-        //State stateBefore = GetState();
         _happiness += happinessController.Happiness;
-        //UpdateAnimationState(stateBefore, GetState());
 
-        if (false)
-        {
-            _audioSource.PlayOneShot(BlobAbsorbedAudioClip, 1.0f);
-        }
+        _audioSource.PlayOneShot(BlobAbsorbedAudioClip[(int)GetState()], 1.0f);
 
         foreach (var player in Resources.FindObjectsOfTypeAll<Player>())
         {
