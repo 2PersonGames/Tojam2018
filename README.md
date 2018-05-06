@@ -1,10 +1,33 @@
-# Tojam2018
+# [Tojam2018](https://en.wikipedia.org/wiki/TOJam) Game
+
+### Alone Together
+
+**Theme:** Winners are Losers
+
+**Story:** You see your friends aren't super happy, so you send them your happiness, but in that process become drained, lethargic and sad yourself. By winning, that is, giving away all your happiness, you lose.
+
+**Mechanics:** 
+- Players have a limited quantity of happiness, which they send out as projectiles to others. 
+- It is absorbed and respectively alters the happiness levels in each player. 
+- When you've given away all your happiness, you will be sad, and in your final act, you have to give away yourself.
+
+**Authors:**
+
+_Coders_
+- Jessica Gold
+- Sam Albon
+- Ian Nastajus
+
+_Sound_
+- Liam Gallagher
+
 
 ### Target System Requirements
 
 PC for Windows.
 Xbox 360 controllers.
 2 to 4 players.
+
 
 ### Gameplay images
 
