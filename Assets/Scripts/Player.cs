@@ -3,12 +3,22 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public enum State
+    {
+        FullHappiness,
+        FourFifths,
+        Normal,
+        TwoFifths,
+        NoHappinessLeft
+    };
+
     private static int playerCounter = 0;
     
     public AudioClip BlobCreatedAudioClip;
     public AudioClip BlobAbsorbedAudioClip;
     public AudioClip PlayerHitWall;
 
+    private int _startingHappiness;
     private int _happiness;
     private AudioSource _audioSource;
     private int _playerNumber;
@@ -17,6 +27,7 @@ public class Player : MonoBehaviour
     public void Init()
     {
         _happiness = 25;
+        _startingHappiness = _happiness;
         _playerNumber = ++playerCounter;
 
         _happinessThrown = new List<HappinessController>();
@@ -83,5 +94,30 @@ public class Player : MonoBehaviour
     public int GetCountOfHappinessOwnedByMe()
     {
         return _happinessThrown.Count;
+    }
+
+    public State GetState()
+    {
+        var maxHappiness = _startingHappiness * 2;
+        if (_happiness >= maxHappiness)
+        {
+            return State.FullHappiness;
+        }
+        else if (_happiness >= maxHappiness * 0.7f)
+        {
+            return State.FourFifths;
+        }
+        else if (_happiness >= maxHappiness * 0.3f)
+        {
+            return State.Normal;
+        }
+        else if (_happiness > ThrowController.MAX_HAPPINESS_THROW)
+        {
+            return State.TwoFifths;
+        }
+        else
+        {
+            return State.NoHappinessLeft;
+        }
     }
 }

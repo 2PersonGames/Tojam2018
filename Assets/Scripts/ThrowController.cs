@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ThrowController : MonoBehaviour
 {
+    public const byte MAX_HAPPINESS_THROW = 3;
     private const float FORCE = 500.0f;
     private static byte[] _proceduralHappinessValues = new byte[8];
 
@@ -23,7 +24,7 @@ public class ThrowController : MonoBehaviour
             {
                 for (int i = 0; i < _proceduralHappinessValues.Length; i++)
                 {
-                    _proceduralHappinessValues[i] = (byte)Random.Range(1, 3);
+                    _proceduralHappinessValues[i] = (byte)Random.Range(1, MAX_HAPPINESS_THROW);
                 }
             }
         }
