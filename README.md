@@ -9,11 +9,13 @@ Xbox 360 controllers.
 
 ### Player Documentation
 
-| Controller Input          |  Keyboard Input              | Action            | Developer Unity's InputManager Axes |
-|---------------------------|------------------------------|-------------------|-------------------------------------|
-| Left Stick                |  ASDW keys (1 player only)   | Movement          | Horizontal, Vertical                |
-| Right Stick               |  Arrow Keys (1 player only)  | Direction of fire | FireDirectionH, FireDirectionV      |
-| RB - Right Bumper button  |  Mouse click (1 player only) | Fire              | Fire1                               |
+| Controller Input          |  Keyboard & Mouse Input                                    | Action            | Developer Unity's InputManager Axes |
+|---------------------------|------------------------------------------------------------|-------------------|-------------------------------------|
+| Left Stick                |  ASDW keys (player 1), JKLI (player 2)                     | Movement          | #Horizontal, #Vertical              |
+| Right Stick               |  Arrow keys (player 1), 1235 (player 2)                    | Direction of fire | #FireDirectionH, #FireDirectionV    |
+| A                         |                                                            | Fire              | #Fire1                              |
+| RB - Right Bumper button  |  Mouse click left (player 1), mouse click right (player 2) | Fire              | #Fire1                              |
+| << do still woops >>      |  E (player 1), O (player 2)                                | Submit            | #Submit                             |
 
 - Note: all InputManager Axes replicated with preceding Player numbers 1 through 4, e.g. 1Horizontal, 2Horizontal... this applies for joystick-related inputs only. Keyboard related inputs will only exist for player 1.
 
@@ -21,7 +23,7 @@ Xbox 360 controllers.
 
 - Created in Unity 2017.1.0f3 
 
-![controller layout](https://github.com/2PersonGames/Tojam2018/raw/master/Readme/600px-X360Controller2.png "Xbox 360 controller layout and identifiers.") [source](http://wiki.unity3d.com/index.php?title=Xbox360Controller)
+![controller layout](https://raw.githubusercontent.com/2PersonGames/Tojam2018/dev/Readme/600px-X360Controller2.png "Xbox 360 controller layout and identifiers.") [source](http://wiki.unity3d.com/index.php?title=Xbox360Controller)
 
 
 
