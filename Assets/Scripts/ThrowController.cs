@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using UnityEngine;
 
 public class ThrowController : MonoBehaviour
@@ -10,6 +11,7 @@ public class ThrowController : MonoBehaviour
     private static readonly byte[] _proceduralHappinessValues;
 
     public Sprite[] ThrowingSprites;
+    public GameObject AimingPrefab;
     public GameObject ThrownObjectPrefab;
 
     private Player _player;
@@ -46,26 +48,8 @@ public class ThrowController : MonoBehaviour
             && _player.GetState() != Player.State.NoHappinessLeft)
         {
             var direction = GetDirection();
-            if (direction == Vector2.zero)
-            {
-                direction = _lastThrownDirection;
-                if (direction == Vector2.zero)
-                {
-                    var opponentPlayer = Resources.FindObjectsOfTypeAll<Player>().First(obj => obj != _player);
-                    direction = opponentPlayer.gameObject.transform.position - _player.gameObject.transform.position;
-                    if (direction == Vector2.zero)
-                    {
-                        direction = Vector2.down;
-                    }
-                }
-            }
-
-            Debug.Log("before norm -- X: " + direction.x + " | y: " + direction.y);
-            direction.Normalize();
-            Debug.Log("after -- X: " + direction.x + " | y: " + direction.y);
-
             var position = gameObject.transform.position;
-            var distanceAwayFromCollision = direction * 0.5f 
+            var distanceAwayFromCollision = direction * 0.5f
                 * ((Vector2.SqrMagnitude(_player.GetComponent<BoxCollider2D>().size))
                     + (Vector2.SqrMagnitude(ThrownObjectPrefab.GetComponent<BoxCollider2D>().size)));
             var playerVelocity = _player.GetComponent<Rigidbody2D>().velocity;
@@ -95,6 +79,26 @@ public class ThrowController : MonoBehaviour
 
     private Vector2 GetDirection()
     {
-        return new Vector2(Input.GetAxis(_player.GetInputName("FireDirectionH")), Input.GetAxis(_player.GetInputName("FireDirectionV")));
+        var direction = new Vector2(
+            Input.GetAxis(_player.GetInputName("FireDirectionH")),
+            Input.GetAxis(_player.GetInputName("FireDirectionV")));
+
+        if (direction == Vector2.zero)
+        {
+            direction = _lastThrownDirection;
+            if (direction == Vector2.zero)
+            {
+                var opponentPlayer = Resources.FindObjectsOfTypeAll<Player>().First(obj => obj != _player);
+                direction = opponentPlayer.gameObject.transform.position - _player.gameObject.transform.position;
+                if (direction == Vector2.zero)
+                {
+                    direction = Vector2.down;
+                }
+            }
+        }
+
+        direction.Normalize();
+
+        return direction;
     }
 }
