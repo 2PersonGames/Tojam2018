@@ -165,6 +165,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Happiness: 50
+  DeathParticlePrefab: {fileID: 1749531647735394, guid: 11b6a4a9138c74e41958b529a36e0ba8,
+    type: 2}
   BlobCreatedAudioClip: {fileID: 0}
   BlobAbsorbedAudioClip: {fileID: 0}
   PlayerHitWall: {fileID: 0}
