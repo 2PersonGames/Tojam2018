@@ -42,16 +42,20 @@ public class ThrowController : MonoBehaviour
                 {
                     var opponentPlayer = Resources.FindObjectsOfTypeAll<Player>().First(obj => obj != _player);
                     direction = opponentPlayer.gameObject.transform.position - _player.gameObject.transform.position;
+                    if (direction == Vector2.zero)
+                    {
+                        direction = Vector2.down;
+                    }
                 }
             }
 
             direction.Normalize();
 
-            var playerVelocity = _player.GetComponent<Rigidbody2D>().velocity;
             var position = gameObject.transform.position;
             var distanceAwayFromCollision = direction * 0.5f 
                 * ((Vector2.SqrMagnitude(_player.GetComponent<BoxCollider2D>().size))
                     + (Vector2.SqrMagnitude(ThrownObjectPrefab.GetComponent<BoxCollider2D>().size)));
+            var playerVelocity = _player.GetComponent<Rigidbody2D>().velocity;
             distanceAwayFromCollision += playerVelocity * Time.fixedDeltaTime * 2.0f;
             position += new Vector3(distanceAwayFromCollision.x, distanceAwayFromCollision.y, 0.0f);
 

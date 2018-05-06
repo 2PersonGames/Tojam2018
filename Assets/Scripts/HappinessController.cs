@@ -10,7 +10,7 @@ public class HappinessController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        _originPlayerTimer = 2.0f;
+        _originPlayerTimer = 0.25f;
     }
 
     // Update is called once per frame
