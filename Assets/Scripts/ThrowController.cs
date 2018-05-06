@@ -4,7 +4,7 @@ using UnityEngine;
 public class ThrowController : MonoBehaviour
 {
     public const byte MAX_HAPPINESS_THROW = 3;
-    private const float FORCE = 500.0f;
+    private const float FORCE = 0.065f;
     private const float THROW_COOLDOWN_LENGTH = 0.75f;
     private static byte[] _proceduralHappinessValues = new byte[8];
 
@@ -62,11 +62,8 @@ public class ThrowController : MonoBehaviour
             }
 
             Debug.Log("before norm -- X: " + direction.x + " | y: " + direction.y);
-
             direction.Normalize();
-
             Debug.Log("after -- X: " + direction.x + " | y: " + direction.y);
-
 
             var position = gameObject.transform.position;
             var distanceAwayFromCollision = direction * 0.5f 
