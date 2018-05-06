@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
         NoHappinessLeft
     };
 
-    private static int playerCounter = 0;
+    private static int playerCounter = 1;
 
     [Range(1, 100)]
     public int Happiness;
@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     private int _startingHappiness;
     private int _happiness;
     private AudioSource _audioSource;
-    public int playerID_ { get; private set; }
+    public int _playerID;
     private List<GameObject> _happinessFired;
     private List<HappinessController> _happinessThrown;
 
@@ -31,12 +31,11 @@ public class Player : MonoBehaviour
     {
         _happiness = 25;
         _startingHappiness = _happiness;
-        playerID_ = ++playerCounter;
+        _playerID = playerCounter++;
 
         _happinessThrown = new List<HappinessController>();
         _audioSource = GetComponent<AudioSource>();
         Happiness = 50;
-        playerID_ = ++playerCounter;
     }
 
     // Use this for initialization
