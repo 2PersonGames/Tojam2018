@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public const int MAX_PLAYERS = 2;
+    public const int MAX_PLAYERS = 4;
 
     public enum State
     {
